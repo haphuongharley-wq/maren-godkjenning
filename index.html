@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="no">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Fra stress til ro · til godkjenning</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;1,500&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#274472;--gold:#AB9461;--gold-d:#8a7340;--ink:#1f2a3d;--slate:#5d6a82;--bg:#FAF9F6;--sand:#EDE7DB}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.wrap{max-width:820px;margin:0 auto;padding:48px 16px 80px}
+.eyebrow{font-size:.75rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-d);margin:0 0 12px}
+h1{font:600 clamp(2.2rem,6vw,3.2rem)/1.1 'Cormorant Garamond',Georgia,serif;color:var(--navy);margin:0 0 12px}
+h2{font:600 1.7rem/1.2 'Cormorant Garamond',Georgia,serif;color:var(--navy);margin:0 0 6px}
+.lead{color:var(--slate);margin:0 0 32px;max-width:640px}
+.card{background:#fff;border:1px solid var(--sand);border-radius:24px;padding:24px;margin:0 0 20px}
+.card p{margin:0 0 16px;color:var(--slate)}
+.links{display:flex;flex-wrap:wrap;gap:8px}
+.links a{display:inline-flex;align-items:center;min-height:44px;padding:8px 16px;border-radius:999px;border:1px solid var(--sand);color:var(--navy);font-weight:600;text-decoration:none;font-size:.95rem}
+.links a.main{background:var(--navy);border-color:var(--navy);color:#fff}
+.links a:hover{border-color:var(--gold)}
+a:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+.note{font-size:.9rem;color:var(--slate);border-left:3px solid var(--gold);padding:4px 0 4px 14px;margin:28px 0 0}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <p class="eyebrow">Det lille pusterommet · til godkjenning</p>
+  <h1>Fra stress til ro</h1>
+  <p class="lead">Salgssiden, checkout-siden og salgssekvensen etter webinaret søndag 15. november. Sidene viser pris og bonuser etter dato, så du kan se hvordan de ser ut på hvert tidspunkt.</p>
+
+  <section class="card">
+    <h2>Salgssiden</h2>
+    <p>Bonusene vises til søndag kl. 23.59, webinarprisen 9 997 kr til onsdag kl. 23.59, deretter 14 990 kr.</p>
+    <div class="links">
+      <a class="main" href="salgsside/">Åpne salgssiden</a>
+      <a href="salgsside/?dato=2026-11-15T12:00">Søndag (med bonuser)</a>
+      <a href="salgsside/?dato=2026-11-17T12:00">Mandag til onsdag</a>
+      <a href="salgsside/?dato=2026-11-19T12:00">Etter onsdag</a>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>Checkout-siden</h2>
+    <p>Samme datoer som salgssiden. Velg delbetaling eller å betale alt nå.</p>
+    <div class="links">
+      <a class="main" href="checkout/">Åpne checkout-siden</a>
+      <a href="checkout/?dato=2026-11-15T12:00">Søndag (med bonuser)</a>
+      <a href="checkout/?dato=2026-11-17T12:00">Mandag til onsdag</a>
+      <a href="checkout/?dato=2026-11-19T12:00">Etter onsdag</a>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>Salgssekvensen</h2>
+    <p>Åtte e-poster fra søndag 15. til onsdag 18. november, med emne, forhåndstekst og tidspunkt for hver e-post.</p>
+    <div class="links">
+      <a class="main" href="salgssekvens/">Les e-postene</a>
+    </div>
+  </section>
+
+  <p class="note">Betalingsknappene virker ikke ennå, de kobles til Kajabi når alt er godkjent. «[Fornavn]» blir byttet ut med navnet til hver mottaker.</p>
+</main>
+</body>
+</html>
