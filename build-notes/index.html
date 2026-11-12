@@ -48,7 +48,7 @@ a:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
     <h2>Thứ tự build</h2>
     <ol>
       <li><strong>Tạo offer trên Kajabi</strong> (mục 1). Cần có link offer trước thì mới điền được vào các trang.</li>
-      <li><strong>Tạo trang trên Kajabi</strong> cho checkout, sales page và trang xem lại webinar. Mỗi trang là một section Custom Code toàn chiều rộng; dán nguyên file HTML vào. Lấy URL của từng trang.</li>
+      <li><strong>Tạo trang trên Kajabi</strong> cho sales page, checkout và trang xem lại webinar. Mỗi trang là một section Custom Code toàn chiều rộng; dán nguyên file HTML vào. Lấy URL của từng trang.</li>
       <li><strong>Điền link</strong> vào khối <code>Fill these before publishing</code> ở đầu script của từng trang (mục 2 đến 4), rồi dán lại vào Kajabi.</li>
       <li><strong>Làm phần rời chuỗi email</strong>: tag, trang xác nhận và automation (mục 5).</li>
       <li><strong>Điền link email</strong> trong <code>build-emails.py</code>, build lại, dán 8 email vào Kajabi và lên lịch (mục 6).</li>
@@ -60,10 +60,10 @@ a:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
     <h2>1. Offer cần tạo trên Kajabi</h2>
     <div class="tbl"><table>
       <tr><th>Offer</th><th>Giá</th><th>Dùng khi</th><th>Điền vào</th></tr>
-      <tr><td>Webinarpris, trả một lần</td><td>9 997 kr</td><td>Đến hết thứ Tư 18/11, 23:59</td><td>checkout <code>options</code> id <code>full</code>; sales page <code>PAY.full</code> (không bắt buộc)</td></tr>
-      <tr><td>Webinarpris, trả góp</td><td>3 × 3 497 kr (totalt 10 491 kr)</td><td>Đến hết thứ Tư 18/11, 23:59</td><td>checkout <code>options</code> id <code>split</code>; sales page <code>PAY.split</code> (không bắt buộc)</td></tr>
-      <tr><td>Giá thường, trả một lần</td><td>14 990 kr</td><td>Từ thứ Năm 19/11</td><td>checkout <code>after</code> id <code>full</code>; sales page <code>PAY_AFTER.full</code> (không bắt buộc)</td></tr>
-      <tr><td>Giá thường, trả góp</td><td>3 × 5 247 kr (totalt 15 741 kr)</td><td>Từ thứ Năm 19/11</td><td>checkout <code>after</code> id <code>split</code>; sales page <code>PAY_AFTER.split</code> (không bắt buộc)</td></tr>
+      <tr><td>Webinarpris, trả một lần</td><td>9 997 kr</td><td>Đến hết thứ Tư 18/11, 23:59</td><td>checkout <code>options</code> id <code>full</code>; sales page <code>PAY.full</code></td></tr>
+      <tr><td>Webinarpris, trả góp</td><td>3 × 3 497 kr (totalt 10 491 kr)</td><td>Đến hết thứ Tư 18/11, 23:59</td><td>checkout <code>options</code> id <code>split</code>; sales page <code>PAY.split</code></td></tr>
+      <tr><td>Giá thường, trả một lần</td><td>14 990 kr</td><td>Từ thứ Năm 19/11</td><td>checkout <code>after</code> id <code>full</code>; sales page <code>PAY_AFTER.full</code></td></tr>
+      <tr><td>Giá thường, trả góp</td><td>3 × 5 247 kr (totalt 15 741 kr)</td><td>Từ thứ Năm 19/11</td><td>checkout <code>after</code> id <code>split</code>; sales page <code>PAY_AFTER.split</code></td></tr>
       <tr><td>Klarna</td><td>theo giá đang chạy</td><td>Cả hai giai đoạn</td><td>checkout <code>klarna</code>; sales page <code>PAY.klarna</code> và <code>PAY_AFTER.klarna</code></td></tr>
       <tr><td>Vipps</td><td>theo giá đang chạy</td><td>Cả hai giai đoạn</td><td>checkout <code>vipps</code>; sales page <code>PAY.vipps</code> và <code>PAY_AFTER.vipps</code></td></tr>
     </table></div>
@@ -87,21 +87,24 @@ a:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
       <tr><td><code>klarna</code></td><td>Link thanh toán Klarna</td><td>Khung Klarna vẫn hiện, bấm vào chỉ ra thông báo preview</td><td><span class="miss">Thiếu</span></td></tr>
       <tr><td><code>vipps</code></td><td>Link thanh toán Vipps</td><td>Ẩn nút Vipps</td><td><span class="miss">Thiếu</span></td></tr>
     </table></div>
-    <p class="note">Trang tự chọn sẵn lựa chọn theo <code>?plan=full</code> hoặc <code>?plan=split</code> trên URL, nên các nút ở sales page dẫn đúng lựa chọn. Hiện chỉ có một ô <code>klarna</code> và một ô <code>vipps</code> cho cả hai giai đoạn. Nếu link Klarna/Vipps gắn với một giá cố định thì phải đổi sang link giá thường vào thứ Năm 19/11.</p>
+    <p class="note">Email 1, 2 và 3 dẫn tới trang này. Sales page không dẫn qua checkout. Hiện chỉ có một ô <code>klarna</code> và một ô <code>vipps</code> cho cả hai giai đoạn. Nếu link Klarna/Vipps gắn với một giá cố định thì phải đổi sang link giá thường vào thứ Năm 19/11.</p>
   </section>
 
   <section class="card">
     <h2>3. Sales page · <code>maren-sales-page.html</code></h2>
-    <p>Điền ở đầu script, các biến <code>CHECKOUT_URL</code>, <code>PAY</code> và <code>PAY_AFTER</code>.</p>
+    <p>4 nút thanh toán trong khung giá (Betal, Del opp, Betal med Klarna, Betal med Vipps) đi thẳng tới offer Kajabi, Klarna và Vipps, không qua trang checkout. Mọi nút khác trên trang (thanh trên cùng, nút giữa trang, nút cuối trang, thanh giá trên mobile) cuộn xuống khung giá. Điền ở đầu script, trong <code>PAY</code> (giá webinar) và <code>PAY_AFTER</code> (giá thường, từ thứ Năm). Trang tự đổi bộ link khi qua thứ Tư 23:59.</p>
     <div class="tbl"><table>
-      <tr><th>Chỗ điền</th><th>Link</th><th>Nếu để trống</th><th>Trạng thái</th></tr>
-      <tr><td><code>CHECKOUT_URL</code></td><td>URL trang Kajabi chứa checkout ở mục 2 (không phải link offer)</td><td>Mọi nút dẫn tới checkout chỉ hiện thông báo preview</td><td><span class="miss">Thiếu</span></td></tr>
-      <tr><td><code>CHECKOUT_URL_AFTER</code></td><td>Chỉ điền nếu giá thường có trang checkout riêng</td><td>Dùng <code>CHECKOUT_URL</code>; trang checkout tự đổi giá</td><td><span class="opt">Để trống</span></td></tr>
-      <tr><td><code>PAY.full</code>, <code>PAY.split</code></td><td>Link offer giá webinar, nếu muốn nút đi thẳng tới thanh toán Kajabi</td><td>Đi tới checkout với <code>?plan=</code> (cách nên dùng)</td><td><span class="opt">Không bắt buộc</span></td></tr>
-      <tr><td><code>PAY.klarna</code>, <code>PAY.vipps</code></td><td>Link Klarna và Vipps, giá webinar</td><td>Nút hiện thông báo preview</td><td><span class="miss">Thiếu</span></td></tr>
-      <tr><td><code>PAY_AFTER.klarna</code>, <code>PAY_AFTER.vipps</code></td><td>Link Klarna và Vipps, giá thường (từ thứ Năm)</td><td>Như trên</td><td><span class="miss">Thiếu</span></td></tr>
-      <tr><td><code>PAY_AFTER.full</code>, <code>PAY_AFTER.split</code></td><td>Link offer giá thường</td><td>Đi tới checkout với <code>?plan=</code></td><td><span class="opt">Không bắt buộc</span></td></tr>
+      <tr><th>Chỗ điền</th><th>Nút</th><th>Link</th><th>Trạng thái</th></tr>
+      <tr><td><code>PAY.full</code></td><td>Betal 9 997 kr</td><td>Offer 9 997 kr</td><td><span class="miss">Thiếu</span></td></tr>
+      <tr><td><code>PAY.split</code></td><td>Del opp: 3 × 3 497 kr</td><td>Offer 3 × 3 497 kr</td><td><span class="miss">Thiếu</span></td></tr>
+      <tr><td><code>PAY.klarna</code></td><td>Betal med Klarna</td><td>Klarna, giá webinar</td><td><span class="miss">Thiếu</span></td></tr>
+      <tr><td><code>PAY.vipps</code></td><td>Betal med Vipps</td><td>Vipps, giá webinar</td><td><span class="miss">Thiếu</span></td></tr>
+      <tr><td><code>PAY_AFTER.full</code></td><td>Betal 14 990 kr</td><td>Offer 14 990 kr</td><td><span class="miss">Thiếu</span></td></tr>
+      <tr><td><code>PAY_AFTER.split</code></td><td>Del opp: 3 × 5 247 kr</td><td>Offer 3 × 5 247 kr</td><td><span class="miss">Thiếu</span></td></tr>
+      <tr><td><code>PAY_AFTER.klarna</code></td><td>Betal med Klarna</td><td>Klarna, giá thường</td><td><span class="miss">Thiếu</span></td></tr>
+      <tr><td><code>PAY_AFTER.vipps</code></td><td>Betal med Vipps</td><td>Vipps, giá thường</td><td><span class="miss">Thiếu</span></td></tr>
     </table></div>
+    <p class="note">Ô nào để trống thì nút đó chỉ hiện thông báo preview. Nếu Klarna/Vipps dùng một link cho mọi giá thì điền cùng link vào cả <code>PAY</code> và <code>PAY_AFTER</code>.</p>
   </section>
 
   <section class="card">
