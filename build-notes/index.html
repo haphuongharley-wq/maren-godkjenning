@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="vi">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -40,151 +40,151 @@ a:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
 <body>
 <main class="wrap">
   <a class="back" href="../">← Tilbake</a>
-  <p class="eyebrow">Cho team build · cập nhật 12/11/2026</p>
+  <p class="eyebrow">For the build team · updated 12 Nov 2026</p>
   <h1>Build notes</h1>
-  <p class="lead">Cách đưa sales page, checkout và 8 email bán hàng lên Kajabi, và mọi link còn trống phải điền trước khi chạy. File gốc nằm trong repo riêng <code>maren-project</code>; bản preview công khai ở <a href="https://haphuongharley-wq.github.io/maren-kajabi-pages/pages/fra-stress-til-ro/maren-sales-page.html">maren-kajabi-pages</a>.</p>
+  <p class="lead">How to put the sales page, the checkout page and the 8 sales emails into Kajabi, and every link that must be filled in before launch. The source files live in the private repo <code>maren-project</code>; public previews are in <a href="https://haphuongharley-wq.github.io/maren-kajabi-pages/pages/fra-stress-til-ro/maren-sales-page.html">maren-kajabi-pages</a>.</p>
 
   <section class="card">
-    <h2>Thứ tự build</h2>
+    <h2>Build order</h2>
     <ol>
-      <li><strong>Tạo offer trên Kajabi</strong> (mục 1). Cần có link offer trước thì mới điền được vào các trang.</li>
-      <li><strong>Tạo trang trên Kajabi</strong> cho sales page, checkout và trang xem lại webinar. Mỗi trang là một section Custom Code toàn chiều rộng; dán nguyên file HTML vào. Lấy URL của từng trang.</li>
-      <li><strong>Điền link</strong> vào khối <code>Fill these before publishing</code> ở đầu script của từng trang (mục 2 đến 4), rồi dán lại vào Kajabi.</li>
-      <li><strong>Làm phần rời chuỗi email</strong>: tag, trang xác nhận và automation (mục 5).</li>
-      <li><strong>Điền link email</strong> trong <code>build-emails.py</code>, build lại, dán 8 email vào Kajabi và lên lịch (mục 6).</li>
-      <li><strong>Kiểm tra</strong> bằng <code>?dato=</code> (mục 7) và gửi thử từng email cho chính mình.</li>
+      <li><strong>Create the offers in Kajabi</strong> (section 1). The pages need the offer links.</li>
+      <li><strong>Create the pages in Kajabi</strong> for the sales page, the checkout page and the webinar replay page. Each page is one full-width Custom Code section; paste the whole HTML file. Note each page's URL.</li>
+      <li><strong>Fill in the links</strong> in the <code>Fill these before publishing</code> block at the top of each page's script (sections 2 to 4), then paste the page into Kajabi again.</li>
+      <li><strong>Set up the sales email opt-out</strong>: tag, confirmation page and automation (section 5).</li>
+      <li><strong>Fill in the email links</strong> in <code>build-emails.py</code>, rebuild, paste the 8 emails into Kajabi and schedule them (section 6).</li>
+      <li><strong>Test</strong> with <code>?dato=</code> (section 7) and send each email to yourself.</li>
     </ol>
   </section>
 
   <section class="card">
-    <h2>1. Offer cần tạo trên Kajabi</h2>
+    <h2>1. Offers to create in Kajabi</h2>
     <div class="tbl"><table>
-      <tr><th>Offer</th><th>Giá</th><th>Dùng khi</th><th>Điền vào</th></tr>
-      <tr><td>Webinarpris, trả một lần</td><td>9 997 kr</td><td>Đến hết thứ Tư 18/11, 23:59</td><td>checkout <code>options</code> id <code>full</code>; sales page <code>PAY.full</code></td></tr>
-      <tr><td>Webinarpris, trả góp</td><td>3 × 3 497 kr (totalt 10 491 kr)</td><td>Đến hết thứ Tư 18/11, 23:59</td><td>checkout <code>options</code> id <code>split</code>; sales page <code>PAY.split</code></td></tr>
-      <tr><td>Giá thường, trả một lần</td><td>14 990 kr</td><td>Từ thứ Năm 19/11</td><td>checkout <code>after</code> id <code>full</code>; sales page <code>PAY_AFTER.full</code></td></tr>
-      <tr><td>Giá thường, trả góp</td><td>3 × 5 247 kr (totalt 15 741 kr)</td><td>Từ thứ Năm 19/11</td><td>checkout <code>after</code> id <code>split</code>; sales page <code>PAY_AFTER.split</code></td></tr>
-      <tr><td>Klarna</td><td>theo giá đang chạy</td><td>Cả hai giai đoạn</td><td>checkout <code>klarna</code>; sales page <code>PAY.klarna</code> và <code>PAY_AFTER.klarna</code></td></tr>
-      <tr><td>Vipps</td><td>theo giá đang chạy</td><td>Cả hai giai đoạn</td><td>checkout <code>vipps</code>; sales page <code>PAY.vipps</code> và <code>PAY_AFTER.vipps</code></td></tr>
+      <tr><th>Offer</th><th>Price</th><th>Used</th><th>Goes into</th></tr>
+      <tr><td>Webinar price, pay in full</td><td>9 997 kr</td><td>Until Wed 18 Nov, 23:59</td><td>checkout <code>options</code> id <code>full</code>; sales page <code>PAY.full</code></td></tr>
+      <tr><td>Webinar price, instalments</td><td>3 × 3 497 kr (total 10 491 kr)</td><td>Until Wed 18 Nov, 23:59</td><td>checkout <code>options</code> id <code>split</code>; sales page <code>PAY.split</code></td></tr>
+      <tr><td>Ordinary price, pay in full</td><td>14 990 kr</td><td>From Thu 19 Nov</td><td>checkout <code>after</code> id <code>full</code>; sales page <code>PAY_AFTER.full</code></td></tr>
+      <tr><td>Ordinary price, instalments</td><td>3 × 5 247 kr (total 15 741 kr)</td><td>From Thu 19 Nov</td><td>checkout <code>after</code> id <code>split</code>; sales page <code>PAY_AFTER.split</code></td></tr>
+      <tr><td>Klarna</td><td>current price</td><td>Both periods</td><td>checkout <code>klarna</code>; sales page <code>PAY.klarna</code> and <code>PAY_AFTER.klarna</code></td></tr>
+      <tr><td>Vipps</td><td>current price</td><td>Both periods</td><td>checkout <code>vipps</code>; sales page <code>PAY.vipps</code> and <code>PAY_AFTER.vipps</code></td></tr>
     </table></div>
     <ul>
-      <li>Bonus (Minikurs i meditasjon và Morgenstrekk med Pia) chỉ dành cho người mua trước Chủ nhật 15/11, 23:59. Hai offer giá webinar cần giao bonus cho người mua trong khoảng đó, rồi bỏ bonus sau 23:59 Chủ nhật.</li>
-      <li>Sau thứ Tư 23:59, đóng hoặc cho hết hạn hai offer 9 997 kr trên Kajabi. Các trang tự chuyển sang link giá thường, nhưng ai còn giữ link offer cũ thì vẫn mua được giá cũ.</li>
-      <li>Thank-you page sau khi mua (<code>maren-purchase-thank-you-page.html</code>) đặt làm trang cảm ơn cho cả 4 offer. Trong <code>CONFIG</code> đang ghi <code>maren@detlillepusterommet.no</code>. <code>FIRE_PURCHASE</code> để <code>false</code> nếu Kajabi đã tự gửi sự kiện Purchase cho Meta Pixel.</li>
-      <li>Mỗi offer gắn tag <code>kjøpt-fra-stress-til-ro</code> khi mua, để người đã mua ra khỏi chuỗi email (mục 5).</li>
+      <li>The bonuses (Minikurs i meditasjon and Morgenstrekk med Pia) are only for buyers before Sun 15 Nov, 23:59. The two webinar-price offers must deliver the bonuses to those buyers and stop doing so after Sunday 23:59.</li>
+      <li>After Wednesday 23:59, close or expire the two 9 997 kr offers in Kajabi. The pages switch to the ordinary-price links on their own, but anyone holding an old offer link could still buy at the old price.</li>
+      <li>Set the after-purchase thank-you page (<code>maren-purchase-thank-you-page.html</code>) as the thank-you page of all 4 offers. Its <code>CONFIG</code> holds <code>maren@detlillepusterommet.no</code>. Leave <code>FIRE_PURCHASE</code> at <code>false</code> if Kajabi already sends the Meta Pixel Purchase event.</li>
+      <li>Each offer adds the tag <code>kjøpt-fra-stress-til-ro</code> on purchase, so buyers leave the sales emails (section 5).</li>
     </ul>
   </section>
 
   <section class="card">
     <h2>2. Checkout · <code>maren-checkout-page.html</code></h2>
-    <p>Điền trong <code>var OFFER = {…}</code> ở đầu script.</p>
+    <p>Fill in <code>var OFFER = {…}</code> at the top of the script.</p>
     <div class="tbl"><table>
-      <tr><th>Chỗ điền</th><th>Link</th><th>Nếu để trống</th><th>Trạng thái</th></tr>
-      <tr><td><code>options</code> → <code>split</code> → <code>url</code></td><td>Offer 3 × 3 497 kr</td><td>Nút thanh toán chỉ hiện thông báo preview</td><td><span class="miss">Thiếu</span></td></tr>
-      <tr><td><code>options</code> → <code>full</code> → <code>url</code></td><td>Offer 9 997 kr</td><td>Như trên</td><td><span class="miss">Thiếu</span></td></tr>
-      <tr><td><code>after</code> → <code>split</code> → <code>url</code></td><td>Offer 3 × 5 247 kr</td><td>Như trên, từ thứ Năm</td><td><span class="miss">Thiếu</span></td></tr>
-      <tr><td><code>after</code> → <code>full</code> → <code>url</code></td><td>Offer 14 990 kr</td><td>Như trên, từ thứ Năm</td><td><span class="miss">Thiếu</span></td></tr>
-      <tr><td><code>klarna</code></td><td>Link thanh toán Klarna</td><td>Khung Klarna vẫn hiện, bấm vào chỉ ra thông báo preview</td><td><span class="miss">Thiếu</span></td></tr>
-      <tr><td><code>vipps</code></td><td>Link thanh toán Vipps</td><td>Ẩn nút Vipps</td><td><span class="miss">Thiếu</span></td></tr>
+      <tr><th>Field</th><th>Link</th><th>If empty</th><th>Status</th></tr>
+      <tr><td><code>options</code> → <code>split</code> → <code>url</code></td><td>Offer 3 × 3 497 kr</td><td>The pay button only shows a preview notice</td><td><span class="miss">Missing</span></td></tr>
+      <tr><td><code>options</code> → <code>full</code> → <code>url</code></td><td>Offer 9 997 kr</td><td>Same</td><td><span class="miss">Missing</span></td></tr>
+      <tr><td><code>after</code> → <code>split</code> → <code>url</code></td><td>Offer 3 × 5 247 kr</td><td>Same, from Thursday</td><td><span class="miss">Missing</span></td></tr>
+      <tr><td><code>after</code> → <code>full</code> → <code>url</code></td><td>Offer 14 990 kr</td><td>Same, from Thursday</td><td><span class="miss">Missing</span></td></tr>
+      <tr><td><code>klarna</code></td><td>Klarna payment link</td><td>The Klarna box still shows; clicking it only shows a preview notice</td><td><span class="miss">Missing</span></td></tr>
+      <tr><td><code>vipps</code></td><td>Vipps payment link</td><td>The Vipps button is hidden</td><td><span class="miss">Missing</span></td></tr>
     </table></div>
-    <p class="note">Email 1, 2 và 3 dẫn tới trang này. Sales page không dẫn qua checkout. Hiện chỉ có một ô <code>klarna</code> và một ô <code>vipps</code> cho cả hai giai đoạn. Nếu link Klarna/Vipps gắn với một giá cố định thì phải đổi sang link giá thường vào thứ Năm 19/11.</p>
+    <p class="note">Emails 1, 2 and 3 link to this page. The sales page does not go through the checkout page. There is one <code>klarna</code> field and one <code>vipps</code> field for both periods; if the Klarna or Vipps link is tied to one price, swap it for the ordinary-price link on Thu 19 Nov.</p>
   </section>
 
   <section class="card">
     <h2>3. Sales page · <code>maren-sales-page.html</code></h2>
-    <p>4 nút thanh toán trong khung giá (Betal, Del opp, Betal med Klarna, Betal med Vipps) đi thẳng tới offer Kajabi, Klarna và Vipps, không qua trang checkout. Mọi nút khác trên trang (thanh trên cùng, nút giữa trang, nút cuối trang, thanh giá trên mobile) cuộn xuống khung giá. Điền ở đầu script, trong <code>PAY</code> (giá webinar) và <code>PAY_AFTER</code> (giá thường, từ thứ Năm). Trang tự đổi bộ link khi qua thứ Tư 23:59.</p>
+    <p>The 4 payment buttons in the offer card (Betal, Del opp, Betal med Klarna, Betal med Vipps) go straight to the Kajabi offer, Klarna and Vipps, never through the checkout page. Every other button on the page (top bar, mid-page buttons, final button, mobile price bar) scrolls to the offer card. Fill in <code>PAY</code> (webinar price) and <code>PAY_AFTER</code> (ordinary price, from Thursday) at the top of the script. The page switches link sets by itself after Wednesday 23:59.</p>
     <div class="tbl"><table>
-      <tr><th>Chỗ điền</th><th>Nút</th><th>Link</th><th>Trạng thái</th></tr>
-      <tr><td><code>PAY.full</code></td><td>Betal 9 997 kr</td><td>Offer 9 997 kr</td><td><span class="miss">Thiếu</span></td></tr>
-      <tr><td><code>PAY.split</code></td><td>Del opp: 3 × 3 497 kr</td><td>Offer 3 × 3 497 kr</td><td><span class="miss">Thiếu</span></td></tr>
-      <tr><td><code>PAY.klarna</code></td><td>Betal med Klarna</td><td>Klarna, giá webinar</td><td><span class="miss">Thiếu</span></td></tr>
-      <tr><td><code>PAY.vipps</code></td><td>Betal med Vipps</td><td>Vipps, giá webinar</td><td><span class="miss">Thiếu</span></td></tr>
-      <tr><td><code>PAY_AFTER.full</code></td><td>Betal 14 990 kr</td><td>Offer 14 990 kr</td><td><span class="miss">Thiếu</span></td></tr>
-      <tr><td><code>PAY_AFTER.split</code></td><td>Del opp: 3 × 5 247 kr</td><td>Offer 3 × 5 247 kr</td><td><span class="miss">Thiếu</span></td></tr>
-      <tr><td><code>PAY_AFTER.klarna</code></td><td>Betal med Klarna</td><td>Klarna, giá thường</td><td><span class="miss">Thiếu</span></td></tr>
-      <tr><td><code>PAY_AFTER.vipps</code></td><td>Betal med Vipps</td><td>Vipps, giá thường</td><td><span class="miss">Thiếu</span></td></tr>
+      <tr><th>Field</th><th>Button</th><th>Link</th><th>Status</th></tr>
+      <tr><td><code>PAY.full</code></td><td>Betal 9 997 kr</td><td>Offer 9 997 kr</td><td><span class="miss">Missing</span></td></tr>
+      <tr><td><code>PAY.split</code></td><td>Del opp: 3 × 3 497 kr</td><td>Offer 3 × 3 497 kr</td><td><span class="miss">Missing</span></td></tr>
+      <tr><td><code>PAY.klarna</code></td><td>Betal med Klarna</td><td>Klarna, webinar price</td><td><span class="miss">Missing</span></td></tr>
+      <tr><td><code>PAY.vipps</code></td><td>Betal med Vipps</td><td>Vipps, webinar price</td><td><span class="miss">Missing</span></td></tr>
+      <tr><td><code>PAY_AFTER.full</code></td><td>Betal 14 990 kr</td><td>Offer 14 990 kr</td><td><span class="miss">Missing</span></td></tr>
+      <tr><td><code>PAY_AFTER.split</code></td><td>Del opp: 3 × 5 247 kr</td><td>Offer 3 × 5 247 kr</td><td><span class="miss">Missing</span></td></tr>
+      <tr><td><code>PAY_AFTER.klarna</code></td><td>Betal med Klarna</td><td>Klarna, ordinary price</td><td><span class="miss">Missing</span></td></tr>
+      <tr><td><code>PAY_AFTER.vipps</code></td><td>Betal med Vipps</td><td>Vipps, ordinary price</td><td><span class="miss">Missing</span></td></tr>
     </table></div>
-    <p class="note">Ô nào để trống thì nút đó chỉ hiện thông báo preview. Nếu Klarna/Vipps dùng một link cho mọi giá thì điền cùng link vào cả <code>PAY</code> và <code>PAY_AFTER</code>.</p>
+    <p class="note">An empty field makes its button show a preview notice only. If Klarna or Vipps uses one link for every price, put the same link in both <code>PAY</code> and <code>PAY_AFTER</code>.</p>
   </section>
 
   <section class="card">
-    <h2>4. Trang xem lại webinar · <code>maren-replay-page.html</code></h2>
-    <p>Email 2 và 4 dẫn tới trang này, nên phải làm xong trước khi gửi email.</p>
+    <h2>4. Webinar replay page · <code>maren-replay-page.html</code></h2>
+    <p>Emails 2 and 4 link here, so this page must be ready before those emails go out.</p>
     <div class="tbl"><table>
-      <tr><th>Chỗ điền</th><th>Link</th><th>Trạng thái</th></tr>
-      <tr><td><code>VIDEO_SRC</code></td><td>Link embed video ghi lại webinar (ví dụ Wistia)</td><td><span class="miss">Thiếu</span>, chỉ có sau buổi webinar Chủ nhật</td></tr>
-      <tr><td><code>OFFER_URL</code></td><td>URL sales page</td><td><span class="miss">Thiếu</span></td></tr>
+      <tr><th>Field</th><th>Link</th><th>Status</th></tr>
+      <tr><td><code>VIDEO_SRC</code></td><td>Embed link of the webinar recording (for example Wistia)</td><td><span class="miss">Missing</span>, only available after the webinar on Sunday</td></tr>
+      <tr><td><code>OFFER_URL</code></td><td>Sales page URL</td><td><span class="miss">Missing</span></td></tr>
     </table></div>
-    <p class="note">Video xem lại có đến hết thứ Tư. Cần một người gỡ video hoặc gỡ trang này sau thứ Tư 23:59.</p>
+    <p class="note">The recording is available until Wednesday. Someone has to take the video or this page down after Wednesday 23:59.</p>
   </section>
 
   <section class="card">
-    <h2>5. Rời chuỗi email bán hàng (opt-out)</h2>
-    <p>Cuối mỗi email có dòng «Vil du ikke ha flere e-poster om Fra stress til ro? Klikk her, så stopper de. Du får fortsatt de vanlige e-postene mine.» Link này là <code>STOPP</code>, hiện vẫn <span class="miss">Thiếu</span>.</p>
-    <h3>Cần làm</h3>
+    <h2>5. Sales email opt-out</h2>
+    <p>Every email ends with «Vil du ikke ha flere e-poster om Fra stress til ro? Klikk her, så stopper de. Du får fortsatt de vanlige e-postene mine.» That link is <code>STOPP</code>, still <span class="miss">Missing</span>.</p>
+    <h3>To do</h3>
     <ol>
-      <li>Tạo tag <code>stopp-salg-fsr</code>.</li>
-      <li>Tạo một trang xác nhận ngắn trên Kajabi, ví dụ «Takk, du får ikke flere e-poster om Fra stress til ro. De vanlige e-postene mine kommer som før.» URL của trang này là link <code>STOPP</code>.</li>
-      <li>Cho người bấm link được gắn tag. Nếu Kajabi cho gắn hành động vào link trong email thì gắn «thêm tag <code>stopp-salg-fsr</code>» vào link «Klikk her» ở cả 8 email. Nếu không, dùng một form trên trang xác nhận để gắn tag.</li>
-      <li>Loại người có tag ra khỏi chuỗi:
+      <li>Create the tag <code>stopp-salg-fsr</code>.</li>
+      <li>Create a short confirmation page in Kajabi, for example «Takk, du får ikke flere e-poster om Fra stress til ro. De vanlige e-postene mine kommer som før.» This page's URL is the <code>STOPP</code> link.</li>
+      <li>Tag whoever clicks. If Kajabi lets you attach an action to a link in an email, attach «add tag <code>stopp-salg-fsr</code>» to the «Klikk her» link in all 8 emails. If not, use a form on the confirmation page to add the tag.</li>
+      <li>Keep tagged contacts out of the remaining emails:
         <ul>
-          <li>Nếu gửi bằng sequence: automation «khi có tag <code>stopp-salg-fsr</code>, gỡ khỏi sequence bán hàng».</li>
-          <li>Nếu gửi bằng broadcast lên lịch: segment người nhận loại trừ tag <code>stopp-salg-fsr</code>.</li>
+          <li>Sent as a sequence: an automation «when tag <code>stopp-salg-fsr</code> is added, unsubscribe from the sales sequence».</li>
+          <li>Sent as scheduled broadcasts: the recipient segment excludes the tag <code>stopp-salg-fsr</code>.</li>
         </ul>
       </li>
-      <li>Không dùng link hủy đăng ký mặc định của Kajabi cho dòng này, vì link đó gỡ người ta khỏi toàn bộ danh sách email.</li>
+      <li>Do not use Kajabi's default unsubscribe link for this line; it removes the contact from the whole email list.</li>
     </ol>
   </section>
 
   <section class="card">
-    <h2>6. 8 email bán hàng · <code>emails/webinar-sales-sequence/</code></h2>
-    <p>Điền <code>LINKS</code> trong <code>build-emails.py</code> rồi chạy <code>python3 build-emails.py</code>. Script báo còn link nào trống; hiện tại là <code>links still empty: CHECKOUT, SALGSSIDE, OPPTAKS, STOPP</code>. Link nào trống thì email dẫn tới địa chỉ tạm có dạng <code>…/[CHECKOUT-LENKE]</code>, nên không được gửi khi script vẫn còn báo trống. UTM (<code>utm_campaign=salg-webinar-15-11</code>, <code>utm_content=e1</code> đến <code>e8</code>) được gắn tự động.</p>
+    <h2>6. The 8 sales emails · <code>emails/webinar-sales-sequence/</code></h2>
+    <p>Fill in <code>LINKS</code> in <code>build-emails.py</code> and run <code>python3 build-emails.py</code>. The script lists every link that is still empty; right now it prints <code>links still empty: CHECKOUT, SALGSSIDE, OPPTAKS, STOPP</code>. An empty link points to a placeholder such as <code>…/[CHECKOUT-LENKE]</code>, so do not send while the script still reports empty links. UTM tags (<code>utm_campaign=salg-webinar-15-11</code>, <code>utm_content=e1</code> to <code>e8</code>) are added automatically.</p>
     <div class="tbl"><table>
-      <tr><th>Link</th><th>Là gì</th><th>Dùng ở email</th><th>Trạng thái</th></tr>
-      <tr><td><code>CHECKOUT</code></td><td>URL trang checkout (mục 2), không phải link offer</td><td>1, 2, 3</td><td><span class="miss">Thiếu</span></td></tr>
-      <tr><td><code>SALGSSIDE</code></td><td>URL sales page (mục 3)</td><td>4, 5, 6, 7, 8</td><td><span class="miss">Thiếu</span></td></tr>
-      <tr><td><code>OPPTAKS</code></td><td>URL trang xem lại webinar (mục 4)</td><td>2, 4</td><td><span class="miss">Thiếu</span></td></tr>
-      <tr><td><code>STOPP</code></td><td>Link rời chuỗi bán hàng (mục 5)</td><td>cả 8 email</td><td><span class="miss">Thiếu</span></td></tr>
+      <tr><th>Link</th><th>What it is</th><th>Used in email</th><th>Status</th></tr>
+      <tr><td><code>CHECKOUT</code></td><td>URL of the checkout page (section 2), not an offer link</td><td>1, 2, 3</td><td><span class="miss">Missing</span></td></tr>
+      <tr><td><code>SALGSSIDE</code></td><td>URL of the sales page (section 3)</td><td>4, 5, 6, 7, 8</td><td><span class="miss">Missing</span></td></tr>
+      <tr><td><code>OPPTAKS</code></td><td>URL of the webinar replay page (section 4)</td><td>2, 4</td><td><span class="miss">Missing</span></td></tr>
+      <tr><td><code>STOPP</code></td><td>Sales email opt-out link (section 5)</td><td>all 8</td><td><span class="miss">Missing</span></td></tr>
     </table></div>
-    <h3>Lịch gửi (giờ Oslo) · người nhận: tất cả người đăng ký webinar</h3>
+    <h3>Schedule (Oslo time) · recipients: everyone registered for the webinar</h3>
     <div class="tbl"><table>
-      <tr><th>Email</th><th>Gửi lúc</th><th>Nút</th></tr>
-      <tr><td>1</td><td>Chủ nhật 15/11, 12:00</td><td>Klikk her for å kjøpe nå! (checkout)</td></tr>
-      <tr><td>2</td><td>Chủ nhật 15/11, 20:00</td><td>Klikk her for å se opptaket nå! (xem lại webinar)</td></tr>
-      <tr><td>3</td><td>Chủ nhật 15/11, 22:30</td><td>Klikk her for å sikre deg alle bonusene nå! (checkout)</td></tr>
-      <tr><td>4</td><td>Thứ Hai 16/11, 12:00</td><td>Klikk her for å kjøpe Fra stress til ro nå! (sales page)</td></tr>
-      <tr><td>5</td><td>Thứ Ba 17/11, 08:00</td><td>Ja, jeg er klar! (sales page)</td></tr>
-      <tr><td>6</td><td>Thứ Ba 17/11, 19:00</td><td>Det vil jeg også (sales page)</td></tr>
-      <tr><td>7</td><td>Thứ Tư 18/11, 08:00</td><td>Klikk her hvis du vil ha en endring nå! (sales page)</td></tr>
-      <tr><td>8</td><td>Thứ Tư 18/11, 20:00</td><td>Sikre meg plassen (sales page)</td></tr>
+      <tr><th>Email</th><th>Send at</th><th>Button</th></tr>
+      <tr><td>1</td><td>Sun 15 Nov, 12:00</td><td>Klikk her for å kjøpe nå! (checkout)</td></tr>
+      <tr><td>2</td><td>Sun 15 Nov, 20:00</td><td>Klikk her for å se opptaket nå! (replay page)</td></tr>
+      <tr><td>3</td><td>Sun 15 Nov, 22:30</td><td>Klikk her for å sikre deg alle bonusene nå! (checkout)</td></tr>
+      <tr><td>4</td><td>Mon 16 Nov, 12:00</td><td>Klikk her for å kjøpe Fra stress til ro nå! (sales page)</td></tr>
+      <tr><td>5</td><td>Tue 17 Nov, 08:00</td><td>Ja, jeg er klar! (sales page)</td></tr>
+      <tr><td>6</td><td>Tue 17 Nov, 19:00</td><td>Det vil jeg også (sales page)</td></tr>
+      <tr><td>7</td><td>Wed 18 Nov, 08:00</td><td>Klikk her hvis du vil ha en endring nå! (sales page)</td></tr>
+      <tr><td>8</td><td>Wed 18 Nov, 20:00</td><td>Sikre meg plassen (sales page)</td></tr>
     </table></div>
-    <h3>Khi dán vào Kajabi</h3>
+    <h3>When pasting into Kajabi</h3>
     <ul>
-      <li>Loại trừ: tag «aktiv coachingkunde», tag «avsluttet coachingkunde», người dự Advanced Training ngày 8/11, người có tag <code>kjøpt-fra-stress-til-ro</code> hoặc <code>stopp-salg-fsr</code>.</li>
-      <li>Kiểm tra múi giờ của site Kajabi là Europe/Oslo trước khi lên lịch.</li>
-      <li><code>[Fornavn]</code> phải thay bằng merge tag tên của Kajabi (chèn từ nút merge tag trong trình soạn email).</li>
-      <li>Ảnh trong email (logo, ảnh Maren) đang lấy từ GitHub Pages của <code>maren-kajabi-pages</code>. Repo đó phải để public trong suốt chiến dịch, hoặc tải ảnh lên Kajabi rồi thay <code>src</code>.</li>
-      <li>Dán HTML qua khối code/HTML của Kajabi. Sau khi dán, gửi thử từng email và bấm hết các link một lượt.</li>
-      <li>Câu chữ chỉ sửa trong <code>copy/08-webinar-sales-sequence/sequence-no.md</code>, sau đó build lại. Không sửa trực tiếp trong file HTML.</li>
+      <li>Exclude: tag «aktiv coachingkunde», tag «avsluttet coachingkunde», attendees of the Advanced Training on 8 Nov, and contacts tagged <code>kjøpt-fra-stress-til-ro</code> or <code>stopp-salg-fsr</code>.</li>
+      <li>Check that the Kajabi site time zone is Europe/Oslo before scheduling.</li>
+      <li>Replace <code>[Fornavn]</code> with Kajabi's first-name merge tag (insert it from the merge tag button in the email editor).</li>
+      <li>The email images (logo, Maren's photo) load from the GitHub Pages site of <code>maren-kajabi-pages</code>. Keep that repo public for the whole campaign, or upload the images to Kajabi and change the <code>src</code>.</li>
+      <li>Paste the HTML through Kajabi's code/HTML block. Then send each email to yourself and click every link once.</li>
+      <li>Edit the wording only in <code>copy/08-webinar-sales-sequence/sequence-no.md</code> and rebuild. Never edit the HTML files directly.</li>
     </ul>
   </section>
 
   <section class="card">
-    <h2>7. Thời gian và kiểm tra</h2>
+    <h2>7. Timing and testing</h2>
     <ul>
-      <li>Các mốc nằm trong <code>DEADLINES</code> của sales page và checkout, theo giờ Oslo: bonus <code>2026-11-15 23:59:59</code>, giá webinar <code>2026-11-18 23:59:59</code>. Không cần sửa. Hai trang đã được kiểm tra ở cả 6 mốc và cho kết quả giống nhau với mọi múi giờ của người xem.</li>
-      <li>Xem trước bất kỳ thời điểm nào bằng cách thêm <code>?dato=2026-11-17T12:00</code> vào URL, ví dụ <a href="../salgsside/?dato=2026-11-19T12:00">sales page sau thứ Tư</a>.</li>
-      <li>Khi trang đang mở lúc qua hạn: checkout tự chuyển từ bonus sang đếm ngược giá webinar; qua hạn giá thì cả hai trang tự tải lại và hiện 14 990 kr.</li>
-      <li>Sau khi điền link, mở lại cả 3 trang và bấm từng nút. Nếu còn hiện thông báo «Forhåndsvisning: … ikke lagt inn ennå» thì vẫn còn link trống.</li>
+      <li>The deadlines live in <code>DEADLINES</code> on the sales page and the checkout page, in Oslo time: bonuses <code>2026-11-15 23:59:59</code>, webinar price <code>2026-11-18 23:59:59</code>. No change needed. Both pages were tested at 6 moments and give the same result in any viewer time zone.</li>
+      <li>Preview any moment by adding <code>?dato=2026-11-17T12:00</code> to the URL, for example <a href="../salgsside/?dato=2026-11-19T12:00">the sales page after Wednesday</a>.</li>
+      <li>If a page is open when a deadline passes: the checkout switches from the bonus countdown to the webinar price countdown, and after the price deadline both pages reload and show 14 990 kr.</li>
+      <li>After filling in the links, open all 3 pages and click every button. A «Forhåndsvisning: … ikke lagt inn ennå» notice means a link is still empty.</li>
     </ul>
   </section>
 
   <section class="card">
-    <h2>Còn phải chốt</h2>
+    <h2>Still to decide</h2>
     <ul>
-      <li>Cách giao bonus cho người mua trước 23:59 Chủ nhật: gắn bonus vào offer rồi gỡ ra, hay tạo offer riêng?</li>
-      <li>Ai gỡ video xem lại sau thứ Tư 23:59?</li>
-      <li>Link Klarna và Vipps có đổi theo giá không (mục 2)?</li>
+      <li>How are the bonuses delivered to buyers before Sunday 23:59: added to the offer and removed afterwards, or a separate offer?</li>
+      <li>Who takes the replay video down after Wednesday 23:59?</li>
+      <li>Do the Klarna and Vipps links change with the price (section 2)?</li>
     </ul>
   </section>
 </main>
