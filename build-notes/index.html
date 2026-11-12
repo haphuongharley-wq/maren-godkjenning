@@ -45,14 +45,17 @@ a:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
   <p class="lead">How to put the sales page, the checkout page and the 8 sales emails into Kajabi, and every link that must be filled in before launch. The source files live in the private repo <code>maren-project</code>; public previews are in <a href="https://haphuongharley-wq.github.io/maren-kajabi-pages/pages/fra-stress-til-ro/maren-sales-page.html">maren-kajabi-pages</a>.</p>
 
   <section class="card">
-    <h2>Build order</h2>
+    <h2>Status (checked in Kajabi on 12 Nov, 22:40)</h2>
+    <p>Done: all four pages are published with their content, header and footer hidden, page titles and descriptions set, and checkout, replay and opt-out hidden from search engines. The 8 emails are in the event. Automations 1507478 (opt-out form) and 1506283 (buyers out of the event) are published. Offers match the pages (9 997 kr, 3 × 3 497 kr).</p>
+    <h2>Still to do before Sunday</h2>
     <ol>
-      <li><strong>Payment links</strong> are already in the pages (section 1). Plan the repricing for Thursday.</li>
-      <li><strong>Create the pages in Kajabi</strong> for the sales page, the checkout page and the webinar replay page. Each page is one full-width Custom Code section; paste the whole HTML file. Note each page's URL.</li>
-      <li><strong>Fill in the replay page</strong> links (section 4), then paste it into Kajabi again.</li>
-      <li><strong>Publish automation 1507478</strong> (sales email opt-out form, section 5).</li>
-      <li><strong>Fill in the email links</strong> in <code>build-emails.py</code>, rebuild, paste the 8 emails into Kajabi and schedule them (section 6).</li>
-      <li><strong>Test</strong> with <code>?dato=</code> (section 7) and send each email to yourself.</li>
+      <li><strong>Make the event recurring</strong>: event 2148835186 is set to <code>recurring: false</code>, so there is no webinar after 15 Nov and the sales emails run only once. Set it to repeat every Sunday at 10:00.</li>
+      <li><strong>Put a video on the replay page</strong>: the Video block on <code>/opptak-webinar</code> is empty, and email 2 (Sunday 20:00) links to it. Upload <code>media/replay/replay-placeholder.mp4</code> now and swap in the recording on Sunday.</li>
+      <li><strong>Share image</strong>: upload <code>kajabi/img/share/fra-stress-til-ro-1200x630.jpg</code> (maren-kajabi-pages repo) as the SEO / social image of each page, at least the sales page and the checkout. The MCP tools cannot set it.</li>
+      <li><strong>Test the timing</strong>: register a test email to the event and check that email 1 is scheduled for 12:00. Kajabi documents event actions as tied to the event start (10:00); if it shows 13:00, all offsets need to drop by the event length (60 min).</li>
+      <li><strong>Test the opt-out</strong>: on <code>/stopp-salg</code>, submit the test email and check that it leaves the event and that its remaining sales emails are cancelled.</li>
+      <li><strong>Check Vipps and Klarna buyers</strong>: they only leave the event if Edpay grants the Kajabi offer (that runs the «Offer is granted» automation, which adds the buyer tag). Check the first Edpay order.</li>
+      <li><strong>Optional</strong>: both offers have no post-purchase page (Kajabi default thank-you screen). Delete the obsolete draft automation 1506282.</li>
     </ol>
   </section>
 
