@@ -50,7 +50,7 @@ a:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
       <li><strong>Payment links</strong> are already in the pages (section 1). Plan the repricing for Thursday.</li>
       <li><strong>Create the pages in Kajabi</strong> for the sales page, the checkout page and the webinar replay page. Each page is one full-width Custom Code section; paste the whole HTML file. Note each page's URL.</li>
       <li><strong>Fill in the replay page</strong> links (section 4), then paste it into Kajabi again.</li>
-      <li><strong>Set up the sales email opt-out</strong>: tag, confirmation page and automation (section 5).</li>
+      <li><strong>Publish automation 1507478</strong> (sales email opt-out form, section 5).</li>
       <li><strong>Fill in the email links</strong> in <code>build-emails.py</code>, rebuild, paste the 8 emails into Kajabi and schedule them (section 6).</li>
       <li><strong>Test</strong> with <code>?dato=</code> (section 7) and send each email to yourself.</li>
     </ol>
@@ -126,13 +126,13 @@ a:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
 
   <section class="card">
     <h2>5. Sales email opt-out</h2>
-    <p>Every email ends with «Vil du ikke ha flere e-poster om Fra stress til ro? Klikk her, så stopper de. Du får fortsatt de vanlige e-postene mine.» The link goes to <code>detlillepusterommet.no/stopp-salg</code> (draft page 2152400773).</p>
+    <p>Every email ends with «Vil du ikke ha flere e-poster om Fra stress til ro? Klikk her, så stopper de. Du får fortsatt de vanlige e-postene mine.» The link goes to <code>detlillepusterommet.no/stopp-salg</code> (page 2152400773, published). Kajabi has no link-click automation for event emails (only for broadcasts and sequences), so the opt-out runs through a form on that page: the reader types their email and clicks «Stopp e-postene».</p>
     <div class="tbl"><table>
       <tr><th>Part</th><th>What</th><th>Status</th></tr>
-      <tr><td>Tag</td><td><code>stopp-salg-fsr</code> (id 2150450429)</td><td><span class="done">Created</span></td></tr>
-      <tr><td>Link action</td><td>In each of the 8 event emails, select the «Klikk her» link and add the link action «Add tag <code>stopp-salg-fsr</code>».</td><td><span class="miss">To do in Kajabi</span></td></tr>
-      <tr><td>Automation 1506282</td><td>«FSR salg: stopp salgs-e-poster»: when the tag is added, deregister the contact from the webinar event, so the remaining event emails stop. <a href="https://app.kajabi.com/admin/workflows/1506282/edit">Open</a></td><td><span class="miss">Draft, publish</span></td></tr>
-      <tr><td>Page <code>/stopp-salg</code></td><td>Confirmation «Ferdig, du får ikke flere e-poster om Fra stress til ro. … De vanlige e-postene mine kommer som før. Klem fra Maren»</td><td><span class="done">Content in</span> <span class="miss">Publish</span></td></tr>
+      <tr><td>Form 2149782188</td><td>«Stopp salgs-e-poster · Fra stress til ro», email field only, on <code>/stopp-salg</code> (section <code>stopp_form</code>). After submitting it redirects to <code>/stopp-salg?stoppet=1</code>, which shows the confirmation «Ferdig, du får ikke flere e-poster … Klem fra Maren».</td><td><span class="done">Live</span></td></tr>
+      <tr><td>Automation 1507478</td><td>«Stopp salg FSR: skjema → ut av event»: when the form is submitted, deregister the contact from the webinar event and add the tag <code>stopp-salg-fsr</code> (id 2150450429). <a href="https://app.kajabi.com/admin/workflows/1507478/edit">Open</a></td><td><span class="miss">Draft, publish</span></td></tr>
+      <tr><td>Automation 1506282</td><td>The old «tag added → deregister» automation. Not needed any more (nothing adds the tag before the form runs); delete it or leave it as a draft.</td><td>Not needed</td></tr>
+      <tr><td>Link action</td><td>Not possible on event emails, and not needed.</td><td>Not needed</td></tr>
     </table></div>
     <p class="note">Do not use Kajabi's default unsubscribe link for this line; it removes the contact from the whole email list.</p>
   </section>
@@ -154,7 +154,7 @@ a:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
     <ul>
       <li>Paste files are in <code>maren-project/emails/webinar-sales-sequence/kajabi/</code>: the email body only, with <code>{{ first_name }}</code> for the name. Subject and preview text for each email are on the <a href="../salgssekvens/">email review page</a>. Paste through Kajabi's code/HTML block, then send each email to yourself and click every link once.</li>
       <li>The offsets count from the event start (10:00). If Kajabi counts «after the event» from the end of the event (the event is set to 60 minutes), subtract 1 hour from every offset.</li>
-      <li>All links are real: checkout <code>/fra-stress-til-ro</code>, sales page <code>/fra-stress-til-ro-tilbud</code>, replay <code>/opptak-webinar</code>, opt-out <code>/stopp-salg</code> (all draft pages until published). UTM tags are included.</li>
+      <li>All links are real: checkout <code>/fra-stress-til-ro</code>, sales page <code>/fra-stress-til-ro-tilbud</code>, replay <code>/opptak-webinar</code>, opt-out <code>/stopp-salg</code> (all published). UTM tags are included.</li>
       <li>Edit the wording only in <code>copy/08-webinar-sales-sequence/sequence-no.md</code> and rebuild with <code>python3 build-emails.py</code>.</li>
     </ul>
     <h3>Buyers stop getting the emails</h3>
