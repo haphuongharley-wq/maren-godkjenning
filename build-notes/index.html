@@ -67,7 +67,7 @@ a:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
       <tr><td>Vipps (Edpay), 3 payments</td><td>3 × 3 497 kr</td><td><code>app.edpay.no/offer/119/11396/vipps-mobilepay</code></td><td><code>PAY.vippsSplit</code></td><td>id <code>split</code> → <code>vipps</code></td></tr>
       <tr><td>Klarna (Edpay)</td><td>9 997 kr</td><td><code>app.edpay.no/offer/119/11394/stripe-klarna</code></td><td><code>PAY.klarna</code></td><td><code>klarna</code>, <code>klarnaAfter</code></td></tr>
     </table></div>
-    <p class="note"><strong>Action on Thu 19 Nov:</strong> there are no separate offers for the ordinary price, so the pages use the same links after Wednesday (<code>PAY_AFTER = PAY</code> on the sales page; <code>after</code> and <code>klarnaAfter</code> repeat the links on the checkout). From Thursday the pages show 14 990 kr and 3 × 5 247 kr. Before then, reprice the Kajabi offers <code>t7QFrxQP</code> and <code>ihoPo7vc</code> and the Edpay offers <code>11394</code> and <code>11396</code> to 14 990 kr and 3 × 5 247 kr, or buyers pay the webinar price. If new offers are made instead, put their links in <code>PAY_AFTER</code> and in <code>after</code> / <code>klarnaAfter</code>.</p>
+    <p class="note"><strong>Weekly cycle:</strong> the webinar runs every Sunday at 10:00, and the pages follow a weekly Oslo-time cycle: Sunday bonuses + webinar price, Monday to Wednesday 23:59 webinar price, Thursday to Saturday ordinary price (14 990 kr / 3 × 5 247 kr). There are no ordinary-price offers, by decision, so from Thursday to Saturday the pages show 14 990 kr while the buttons still go to the 9 997 kr and 3 × 3 497 kr offers (<code>PAY_AFTER = PAY</code> on the sales page; <code>after</code> and <code>klarnaAfter</code> repeat the links on the checkout). Add ordinary-price links there if those offers are made later.</p>
     <h3>Where the buttons go</h3>
     <ul>
       <li><strong>Sales page</strong>, offer card: «Betal» goes to the Kajabi pay-in-full offer, «Del opp» to the Kajabi 3-payment offer, «Betal med Klarna» to Klarna, «Betal med Vipps» to Vipps in full, and the text link «Eller del opp med Vipps» to Vipps in 3 payments. No button goes through the checkout page. Every other button on the page scrolls to the offer card.</li>
@@ -119,61 +119,57 @@ a:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
 
   <section class="card">
     <h2>5. Sales email opt-out</h2>
-    <p>Every email ends with «Vil du ikke ha flere e-poster om Fra stress til ro? Klikk her, så stopper de. Du får fortsatt de vanlige e-postene mine.» That link is <code>STOPP</code>, still <span class="miss">Missing</span>.</p>
-    <h3>To do</h3>
-    <ol>
-      <li>Create the tag <code>stopp-salg-fsr</code>.</li>
-      <li>Create a short confirmation page in Kajabi, for example «Takk, du får ikke flere e-poster om Fra stress til ro. De vanlige e-postene mine kommer som før.» This page's URL is the <code>STOPP</code> link.</li>
-      <li>Tag whoever clicks. If Kajabi lets you attach an action to a link in an email, attach «add tag <code>stopp-salg-fsr</code>» to the «Klikk her» link in all 8 emails. If not, use a form on the confirmation page to add the tag.</li>
-      <li>Keep tagged contacts out of the remaining emails:
-        <ul>
-          <li>Sent as a sequence: an automation «when tag <code>stopp-salg-fsr</code> is added, unsubscribe from the sales sequence».</li>
-          <li>Sent as scheduled broadcasts: the recipient segment excludes the tag <code>stopp-salg-fsr</code>.</li>
-        </ul>
-      </li>
-      <li>Do not use Kajabi's default unsubscribe link for this line; it removes the contact from the whole email list.</li>
-    </ol>
+    <p>Every email ends with «Vil du ikke ha flere e-poster om Fra stress til ro? Klikk her, så stopper de. Du får fortsatt de vanlige e-postene mine.» The link goes to <code>detlillepusterommet.no/stopp-salg</code> (draft page 2152400773).</p>
+    <div class="tbl"><table>
+      <tr><th>Part</th><th>What</th><th>Status</th></tr>
+      <tr><td>Tag</td><td><code>stopp-salg-fsr</code> (id 2150450429)</td><td><span class="done">Created</span></td></tr>
+      <tr><td>Link action</td><td>In each of the 8 event emails, select the «Klikk her» link and add the link action «Add tag <code>stopp-salg-fsr</code>».</td><td><span class="miss">To do in Kajabi</span></td></tr>
+      <tr><td>Automation 1506282</td><td>«FSR salg: stopp salgs-e-poster»: when the tag is added, deregister the contact from the webinar event, so the remaining event emails stop. <a href="https://app.kajabi.com/admin/workflows/1506282/edit">Open</a></td><td><span class="miss">Draft, publish</span></td></tr>
+      <tr><td>Page <code>/stopp-salg</code></td><td>Short confirmation, for example «Takk, du får ikke flere e-poster om Fra stress til ro. De vanlige e-postene mine kommer som før.»</td><td><span class="miss">Draft, fill and publish</span></td></tr>
+    </table></div>
+    <p class="note">Do not use Kajabi's default unsubscribe link for this line; it removes the contact from the whole email list.</p>
   </section>
 
   <section class="card">
-    <h2>6. The 8 sales emails · <code>emails/webinar-sales-sequence/</code></h2>
-    <p>Fill in <code>LINKS</code> in <code>build-emails.py</code> and run <code>python3 build-emails.py</code>. The script lists every link that is still empty; right now it prints <code>links still empty: CHECKOUT, SALGSSIDE, OPPTAKS, STOPP</code>. An empty link points to a placeholder such as <code>…/[CHECKOUT-LENKE]</code>, so do not send while the script still reports empty links. UTM tags (<code>utm_campaign=salg-webinar-15-11</code>, <code>utm_content=e1</code> to <code>e8</code>) are added automatically.</p>
+    <h2>6. The 8 sales emails, as emails in the event</h2>
+    <p>The emails live in the recurring event <strong>«New Live Wbn - 15.11.2026»</strong> (id 2148835186, <a href="https://app.kajabi.com/admin/events/2148835186/edit">open</a>). Make the event repeat every week on Sunday at 10:00 Oslo time. Each email is an event email set to <strong>After the event</strong>, so it is sent for every weekly webinar, and someone who registers late only gets the emails still ahead.</p>
     <div class="tbl"><table>
-      <tr><th>Link</th><th>What it is</th><th>Used in email</th><th>Status</th></tr>
-      <tr><td><code>CHECKOUT</code></td><td>URL of the checkout page (section 2), not an offer link</td><td>1, 2, 3</td><td><span class="miss">Missing</span></td></tr>
-      <tr><td><code>SALGSSIDE</code></td><td>URL of the sales page (section 3)</td><td>4, 5, 6, 7, 8</td><td><span class="miss">Missing</span></td></tr>
-      <tr><td><code>OPPTAKS</code></td><td>URL of the webinar replay page (section 4)</td><td>2, 4</td><td><span class="miss">Missing</span></td></tr>
-      <tr><td><code>STOPP</code></td><td>Sales email opt-out link (section 5)</td><td>all 8</td><td><span class="miss">Missing</span></td></tr>
+      <tr><th>Email</th><th>Sent</th><th>After event start</th><th>Paste file</th><th>Button</th></tr>
+      <tr><td>1</td><td>Sun 12:00</td><td>2 h</td><td><code>kajabi/email-01.html</code></td><td>Klikk her for å kjøpe nå! (checkout)</td></tr>
+      <tr><td>2</td><td>Sun 20:00</td><td>10 h</td><td><code>kajabi/email-02.html</code></td><td>Klikk her for å se opptaket nå! (replay page)</td></tr>
+      <tr><td>3</td><td>Sun 22:30</td><td>12 h 30 min</td><td><code>kajabi/email-03.html</code></td><td>Klikk her for å sikre deg alle bonusene nå! (checkout)</td></tr>
+      <tr><td>4</td><td>Mon 12:00</td><td>26 h</td><td><code>kajabi/email-04.html</code></td><td>Klikk her for å kjøpe Fra stress til ro nå! (sales page)</td></tr>
+      <tr><td>5</td><td>Tue 08:00</td><td>46 h</td><td><code>kajabi/email-05.html</code></td><td>Ja, jeg er klar! (sales page)</td></tr>
+      <tr><td>6</td><td>Tue 19:00</td><td>57 h</td><td><code>kajabi/email-06.html</code></td><td>Det vil jeg også (sales page)</td></tr>
+      <tr><td>7</td><td>Wed 08:00</td><td>70 h</td><td><code>kajabi/email-07.html</code></td><td>Klikk her hvis du vil ha en endring nå! (sales page)</td></tr>
+      <tr><td>8</td><td>Wed 20:00</td><td>82 h</td><td><code>kajabi/email-08.html</code></td><td>Sikre meg plassen (sales page)</td></tr>
     </table></div>
-    <h3>Schedule (Oslo time) · recipients: everyone registered for the webinar</h3>
-    <div class="tbl"><table>
-      <tr><th>Email</th><th>Send at</th><th>Button</th></tr>
-      <tr><td>1</td><td>Sun 15 Nov, 12:00</td><td>Klikk her for å kjøpe nå! (checkout)</td></tr>
-      <tr><td>2</td><td>Sun 15 Nov, 20:00</td><td>Klikk her for å se opptaket nå! (replay page)</td></tr>
-      <tr><td>3</td><td>Sun 15 Nov, 22:30</td><td>Klikk her for å sikre deg alle bonusene nå! (checkout)</td></tr>
-      <tr><td>4</td><td>Mon 16 Nov, 12:00</td><td>Klikk her for å kjøpe Fra stress til ro nå! (sales page)</td></tr>
-      <tr><td>5</td><td>Tue 17 Nov, 08:00</td><td>Ja, jeg er klar! (sales page)</td></tr>
-      <tr><td>6</td><td>Tue 17 Nov, 19:00</td><td>Det vil jeg også (sales page)</td></tr>
-      <tr><td>7</td><td>Wed 18 Nov, 08:00</td><td>Klikk her hvis du vil ha en endring nå! (sales page)</td></tr>
-      <tr><td>8</td><td>Wed 18 Nov, 20:00</td><td>Sikre meg plassen (sales page)</td></tr>
-    </table></div>
-    <h3>When pasting into Kajabi</h3>
     <ul>
-      <li>Exclude: tag «aktiv coachingkunde», tag «avsluttet coachingkunde», attendees of the Advanced Training on 8 Nov, and contacts tagged <code>kjøpt-fra-stress-til-ro</code> or <code>stopp-salg-fsr</code>.</li>
-      <li>Check that the Kajabi site time zone is Europe/Oslo before scheduling.</li>
-      <li>Replace <code>[Fornavn]</code> with Kajabi's first-name merge tag (insert it from the merge tag button in the email editor).</li>
-      <li>The email images (logo, Maren's photo) load from the GitHub Pages site of <code>maren-kajabi-pages</code>. Keep that repo public for the whole campaign, or upload the images to Kajabi and change the <code>src</code>.</li>
-      <li>Paste the HTML through Kajabi's code/HTML block. Then send each email to yourself and click every link once.</li>
-      <li>Edit the wording only in <code>copy/08-webinar-sales-sequence/sequence-no.md</code> and rebuild. Never edit the HTML files directly.</li>
+      <li>Paste files are in <code>maren-project/emails/webinar-sales-sequence/kajabi/</code>: the email body only, with <code>{{ first_name }}</code> for the name. Subject and preview text for each email are on the <a href="../salgssekvens/">email review page</a>. Paste through Kajabi's code/HTML block, then send each email to yourself and click every link once.</li>
+      <li>The offsets count from the event start (10:00). If Kajabi counts «after the event» from the end of the event (the event is set to 60 minutes), subtract 1 hour from every offset.</li>
+      <li>All links are real: checkout <code>/fra-stress-til-ro-betaling</code>, sales page <code>/fra-stress-til-ro-tilbud</code>, replay <code>/opptak-webinar</code>, opt-out <code>/stopp-salg</code> (all draft pages until published). UTM tags are included.</li>
+      <li>Edit the wording only in <code>copy/08-webinar-sales-sequence/sequence-no.md</code> and rebuild with <code>python3 build-emails.py</code>.</li>
     </ul>
+    <h3>Buyers stop getting the emails</h3>
+    <div class="tbl"><table>
+      <tr><th>Part</th><th>What</th><th>Status</th></tr>
+      <tr><td>Automation 1506283</td><td>«FSR salg: kjøpere ut av webinar-event»: when the buyer tag «Fra stress til ro-skreddersydd for deg» (2150447869) is added, deregister the contact from the event. Both offers already add this tag on purchase and on grant (automations 1494613, 1494611, 1496760, 1496761), so it covers Kajabi checkout and Edpay (Vipps, Klarna) if Edpay grants the offer. <a href="https://app.kajabi.com/admin/workflows/1506283/edit">Open</a></td><td><span class="miss">Draft, publish</span></td></tr>
+    </table></div>
+    <h3>Test before Sunday (about 15 minutes)</h3>
+    <ol>
+      <li>Create a test event starting in 10 minutes with two event emails: «After the event» 5 minutes, and «After the event» 1 h 30 min (this also shows which time units the When field offers).</li>
+      <li>Register two team test emails to it (Contacts, select, bulk action «Register to event»).</li>
+      <li>After the event starts and before the 5-minute email, deregister one of them.</li>
+      <li>If the deregistered contact does not get the email, the setup works. If they still get it, tell the build team: the fallback is an automation with weekly waits and exit conditions.</li>
+    </ol>
   </section>
 
   <section class="card">
     <h2>7. Timing and testing</h2>
     <ul>
-      <li>The deadlines live in <code>DEADLINES</code> on the sales page and the checkout page, in Oslo time: bonuses <code>2026-11-15 23:59:59</code>, webinar price <code>2026-11-18 23:59:59</code>. No change needed. Both pages were tested at 6 moments and give the same result in any viewer time zone.</li>
-      <li>Preview any moment by adding <code>?dato=2026-11-17T12:00</code> to the URL, for example <a href="../salgsside/?dato=2026-11-19T12:00">the sales page after Wednesday</a>.</li>
-      <li>If a page is open when a deadline passes: the checkout switches from the bonus countdown to the webinar price countdown, and after the price deadline both pages reload and show 14 990 kr.</li>
+      <li>The sales page and the checkout follow a weekly cycle in Oslo time (<code>WEEK</code> in each script): Sunday bonuses + webinar price until 23:59, Monday to Wednesday 23:59 webinar price, Thursday to Saturday ordinary price. Tested for two weeks in a row and across a daylight-saving change, in any viewer time zone.</li>
+      <li>Preview any moment by adding <code>?dato=2026-11-17T12:00</code> to the URL, for example <a href="../salgsside/?dato=2026-11-19T12:00">the sales page on a Thursday</a>.</li>
+      <li>If a page is open when a deadline passes: the checkout switches from the bonus countdown to the webinar price countdown, and after Wednesday 23:59 both pages reload and show 14 990 kr.</li>
       <li>Open all 3 pages in Kajabi and click every button once. A «Forhåndsvisning: … ikke lagt inn ennå» notice means a link is still empty. Opening a Vipps link starts a real Vipps payment; just close it.</li>
     </ul>
   </section>
@@ -181,8 +177,8 @@ a:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
   <section class="card">
     <h2>Still to decide</h2>
     <ul>
-      <li>How are the bonuses delivered to buyers before Sunday 23:59: added to the offer and removed afterwards, or a separate offer?</li>
-      <li>Who takes the replay video down after Wednesday 23:59?</li>
+      <li>How are the bonuses delivered every week, only to people who buy on Sunday before 23:59?</li>
+      <li>Replay: a new recording every Sunday, or one fixed recording? Who takes it down after Wednesday 23:59 each week?</li>
     </ul>
   </section>
 </main>
