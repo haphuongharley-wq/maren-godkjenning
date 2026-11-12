@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="no">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Opptaket på søndag</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;1,500&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#274472;--gold:#AB9461;--gold-d:#8a7340;--ink:#1f2a3d;--slate:#5d6a82;--bg:#FAF9F6;--sand:#EDE7DB;--rose-d:#9a4b3d}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.wrap{max-width:760px;margin:0 auto;padding:40px 16px 80px}
+.back{display:inline-block;margin-bottom:20px;color:var(--navy);font-weight:600;text-decoration:none}
+.eyebrow{font-size:.75rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-d);margin:0 0 10px}
+h1{font:600 clamp(2rem,6vw,2.8rem)/1.1 'Cormorant Garamond',Georgia,serif;color:var(--navy);margin:0 0 12px}
+h1 em{font-style:italic;font-weight:500;color:var(--gold-d)}
+h2{font:600 1.5rem/1.2 'Cormorant Garamond',Georgia,serif;color:var(--navy);margin:0 0 12px}
+.lead{color:var(--slate);margin:0 0 24px}
+.card{background:#fff;border:1px solid var(--sand);border-radius:20px;padding:22px;margin:0 0 18px}
+.card p{margin:0 0 12px;color:var(--slate)}
+.card p:last-child{margin-bottom:0}
+.time{display:flex;align-items:center;gap:12px;background:#fbeeea;border:1px solid #efd3cb;border-radius:16px;padding:14px 16px;margin:0 0 18px;color:var(--rose-d);font-weight:600}
+.time b{font:700 1.6rem/1 'Cormorant Garamond',serif;color:var(--rose-d);white-space:nowrap}
+ol.steps{list-style:none;margin:0;padding:0;counter-reset:s}
+ol.steps li{counter-increment:s;position:relative;padding:0 0 18px 52px;color:var(--ink)}
+ol.steps li:last-child{padding-bottom:0}
+ol.steps li::before{content:counter(s);position:absolute;left:0;top:-2px;width:36px;height:36px;border-radius:50%;background:var(--navy);color:#fff;font-weight:600;display:flex;align-items:center;justify-content:center}
+ol.steps small{display:block;color:var(--slate);font-size:.9rem}
+figure{margin:0}
+figure img{display:block;width:100%;height:auto;border-radius:12px}
+figcaption{font-size:.85rem;color:var(--slate);margin-top:8px}
+a{color:var(--navy)}
+a:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <a class="back" href="../">← Tilbake</a>
+  <p class="eyebrow">Søndag 15. november</p>
+  <h1>Slik legger du inn <em>opptaket</em></h1>
+  <p class="lead">Siden med opptaket er ferdig. Du trenger bare å bytte ut én video, uten å røre noe annet på siden. Det tar fem klikk.</p>
+
+  <div class="time"><b>kl. 19.00</b><span>Last opp senest da. E-posten med opptaket går ut kl. 20.00, og en lang video trenger litt tid etter opplasting før den kan spilles av.</span></div>
+
+  <section class="card">
+    <h2>Fem steg</h2>
+    <ol class="steps">
+      <li>Last ned opptaket av webinaret til maskinen din.</li>
+      <li>Åpne siden «Opptak av webinaret» i Kajabi.<small>Vi sender deg lenken rett til redigeringen av siden før søndag.</small></li>
+      <li>Klikk på videoen midt på siden.<small>Innstillingene for videoen åpner seg i menyen til venstre.</small></li>
+      <li>Klikk «Replace» (eller «Upload») under videoen i menyen, og velg opptaket fra maskinen din.<small>Vent til opplastingen er ferdig.</small></li>
+      <li>Klikk «Save» øverst til høyre. Ferdig!</li>
+    </ol>
+  </section>
+
+  <section class="card">
+    <h2>Til nå ligger denne videoen der</h2>
+    <figure><img src="plassholder.png" alt="Midlertidig video: Opptaket kommer i løpet av kvelden" width="960" height="540"><figcaption>Den midlertidige videoen. Hvis noen åpner siden før opptaket er lagt inn, ser de denne.</figcaption></figure>
+  </section>
+
+  <section class="card">
+    <h2>Sjekk at det virker</h2>
+    <p>Åpne siden i et privat vindu i nettleseren og trykk play. Ser du fortsatt den midlertidige videoen, vent noen minutter og last siden på nytt.</p>
+    <p><strong>Får du det ikke til?</strong> Send oss lenken til opptaket på Slack, så legger vi det inn for deg før kl. 19.00.</p>
+  </section>
+</main>
+</body>
+</html>

@@ -101,14 +101,20 @@ a:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
   </section>
 
   <section class="card">
-    <h2>4. Webinar replay page · <code>maren-replay-page.html</code></h2>
-    <p>Emails 2 and 4 link here, so this page must be ready before those emails go out.</p>
+    <h2>4. Webinar replay page · <code>pages/webinar-replay/</code></h2>
+    <p>Emails 2 and 4 link here. The page is three sections on one Kajabi landing page, so on Sunday Maren only replaces a video and never touches code. Her Norwegian guide: <a href="../opptak/">Slik legger du inn opptaket</a>.</p>
     <div class="tbl"><table>
-      <tr><th>Field</th><th>Link</th><th>Status</th></tr>
-      <tr><td><code>VIDEO_SRC</code></td><td>Embed link of the webinar recording (for example Wistia)</td><td><span class="miss">Missing</span>, only available after the webinar on Sunday</td></tr>
-      <tr><td><code>OFFER_URL</code></td><td>Sales page URL</td><td><span class="miss">Missing</span></td></tr>
+      <tr><th>Section</th><th>What</th><th>Status</th></tr>
+      <tr><td>1 · Custom Code</td><td>Paste <code>maren-replay-top.html</code> (heading and intro)</td><td><span class="miss">To build</span></td></tr>
+      <tr><td>2 · Kajabi Video section</td><td>Native Kajabi Video section, background <code>#f4efe5</code>, max width about 960px. Upload <code>media/replay/replay-placeholder.mp4</code> now (10 s, «Opptaket kommer i løpet av kvelden»); optional thumbnail <code>replay-placeholder.png</code>.</td><td><span class="miss">To build</span></td></tr>
+      <tr><td>3 · Custom Code</td><td>Paste <code>maren-replay-bottom.html</code> (testimonials and the button). Fill <code>OFFER_URL</code> with the sales page URL.</td><td><span class="miss">Missing</span> OFFER_URL</td></tr>
     </table></div>
-    <p class="note">The recording is available until Wednesday. Someone has to take the video or this page down after Wednesday 23:59.</p>
+    <ul>
+      <li><code>maren-replay-page.html</code> is a preview of the three sections together; never paste it into Kajabi.</li>
+      <li>Before Sunday: send Maren the direct link to the page editor, and do one test run of «Replace» on the video section to confirm the button names in her guide.</li>
+      <li>Sunday: Maren uploads by 19:00 Oslo time (email 2 goes out at 20:00). If nothing is uploaded by 18:00, the team uploads it.</li>
+      <li>After Wednesday 23:59, someone takes the video or the page down.</li>
+    </ul>
   </section>
 
   <section class="card">
