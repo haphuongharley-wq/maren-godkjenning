@@ -47,9 +47,9 @@ a:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
   <section class="card">
     <h2>Build order</h2>
     <ol>
-      <li><strong>Create the offers in Kajabi</strong> (section 1). The pages need the offer links.</li>
+      <li><strong>Payment links</strong> are already in the pages (section 1). Plan the repricing for Thursday.</li>
       <li><strong>Create the pages in Kajabi</strong> for the sales page, the checkout page and the webinar replay page. Each page is one full-width Custom Code section; paste the whole HTML file. Note each page's URL.</li>
-      <li><strong>Fill in the links</strong> in the <code>Fill these before publishing</code> block at the top of each page's script (sections 2 to 4), then paste the page into Kajabi again.</li>
+      <li><strong>Fill in the replay page</strong> links (section 4), then paste it into Kajabi again.</li>
       <li><strong>Set up the sales email opt-out</strong>: tag, confirmation page and automation (section 5).</li>
       <li><strong>Fill in the email links</strong> in <code>build-emails.py</code>, rebuild, paste the 8 emails into Kajabi and schedule them (section 6).</li>
       <li><strong>Test</strong> with <code>?dato=</code> (section 7) and send each email to yourself.</li>
@@ -57,61 +57,47 @@ a:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
   </section>
 
   <section class="card">
-    <h2>1. Offers to create in Kajabi</h2>
+    <h2>1. Payment links</h2>
+    <p>Filled in on the sales page and the checkout page. <span class="done">Done</span></p>
     <div class="tbl"><table>
-      <tr><th>Offer</th><th>Price</th><th>Used</th><th>Goes into</th></tr>
-      <tr><td>Webinar price, pay in full</td><td>9 997 kr</td><td>Until Wed 18 Nov, 23:59</td><td>checkout <code>options</code> id <code>full</code>; sales page <code>PAY.full</code></td></tr>
-      <tr><td>Webinar price, instalments</td><td>3 × 3 497 kr (total 10 491 kr)</td><td>Until Wed 18 Nov, 23:59</td><td>checkout <code>options</code> id <code>split</code>; sales page <code>PAY.split</code></td></tr>
-      <tr><td>Ordinary price, pay in full</td><td>14 990 kr</td><td>From Thu 19 Nov</td><td>checkout <code>after</code> id <code>full</code>; sales page <code>PAY_AFTER.full</code></td></tr>
-      <tr><td>Ordinary price, instalments</td><td>3 × 5 247 kr (total 15 741 kr)</td><td>From Thu 19 Nov</td><td>checkout <code>after</code> id <code>split</code>; sales page <code>PAY_AFTER.split</code></td></tr>
-      <tr><td>Klarna (Edpay), webinar price</td><td>9 997 kr</td><td>Until Wed 18 Nov, 23:59</td><td>checkout <code>klarna</code>; sales page <code>PAY.klarna</code></td></tr>
-      <tr><td>Klarna (Edpay), ordinary price</td><td>14 990 kr</td><td>From Thu 19 Nov</td><td>checkout <code>klarnaAfter</code>; sales page <code>PAY_AFTER.klarna</code></td></tr>
-      <tr><td>Vipps (Edpay), webinar price</td><td>9 997 kr, one payment</td><td>Until Wed 18 Nov, 23:59</td><td>checkout <code>vipps</code>; sales page <code>PAY.vipps</code></td></tr>
-      <tr><td>Vipps (Edpay), ordinary price</td><td>14 990 kr, one payment</td><td>From Thu 19 Nov</td><td>checkout <code>vippsAfter</code>; sales page <code>PAY_AFTER.vipps</code></td></tr>
+      <tr><th>Plan</th><th>Webinar price</th><th>Link</th><th>Sales page</th><th>Checkout</th></tr>
+      <tr><td>Kajabi, pay in full</td><td>9 997 kr</td><td><code>detlillepusterommet.no/offers/t7QFrxQP/checkout</code></td><td><code>PAY.full</code></td><td><code>options</code> / <code>after</code> id <code>full</code> → <code>url</code></td></tr>
+      <tr><td>Kajabi, 3 payments</td><td>3 × 3 497 kr</td><td><code>detlillepusterommet.no/offers/ihoPo7vc/checkout</code></td><td><code>PAY.split</code></td><td><code>options</code> / <code>after</code> id <code>split</code> → <code>url</code></td></tr>
+      <tr><td>Vipps (Edpay), pay in full</td><td>9 997 kr</td><td><code>app.edpay.no/offer/119/11394/vipps-mobilepay</code></td><td><code>PAY.vipps</code></td><td>id <code>full</code> → <code>vipps</code></td></tr>
+      <tr><td>Vipps (Edpay), 3 payments</td><td>3 × 3 497 kr</td><td><code>app.edpay.no/offer/119/11396/vipps-mobilepay</code></td><td><code>PAY.vippsSplit</code></td><td>id <code>split</code> → <code>vipps</code></td></tr>
+      <tr><td>Klarna (Edpay)</td><td>9 997 kr</td><td><code>app.edpay.no/offer/119/11394/stripe-klarna</code></td><td><code>PAY.klarna</code></td><td><code>klarna</code>, <code>klarnaAfter</code></td></tr>
     </table></div>
+    <p class="note"><strong>Action on Thu 19 Nov:</strong> there are no separate offers for the ordinary price, so the pages use the same links after Wednesday (<code>PAY_AFTER = PAY</code> on the sales page; <code>after</code> and <code>klarnaAfter</code> repeat the links on the checkout). From Thursday the pages show 14 990 kr and 3 × 5 247 kr. Before then, reprice the Kajabi offers <code>t7QFrxQP</code> and <code>ihoPo7vc</code> and the Edpay offers <code>11394</code> and <code>11396</code> to 14 990 kr and 3 × 5 247 kr, or buyers pay the webinar price. If new offers are made instead, put their links in <code>PAY_AFTER</code> and in <code>after</code> / <code>klarnaAfter</code>.</p>
+    <h3>Where the buttons go</h3>
     <ul>
-      <li>Maren takes Vipps and Klarna through <a href="https://www.edpay.no/vipps-kajabi">Edpay</a>, as on her current pages. Every Edpay offer has one fixed price and one link per payment method, for example <code>https://app.edpay.no/offer/119/&lt;offer id&gt;/vipps-mobilepay</code> and <code>…/stripe-klarna</code>. So each price needs its own Vipps link and its own Klarna link.</li>
-      <li>Klarna via Edpay is one-time only. The buyer gets 30 days to pay or can split the payment in Klarna, and Maren receives the full amount from Klarna.</li>
-      <li>Vipps is a one-time payment in the Vipps app. Edpay can split a Vipps payment into instalments, but then Maren has to manage the instalment payments herself (Edpay says so), so the Vipps buttons point to the pay-in-full offers only. Instalments go through the Kajabi offers or Klarna.</li>
-      <li>The bonuses (Minikurs i meditasjon and Morgenstrekk med Pia) are only for buyers before Sun 15 Nov, 23:59. The two webinar-price offers must deliver the bonuses to those buyers and stop doing so after Sunday 23:59.</li>
-      <li>After Wednesday 23:59, close or expire the two 9 997 kr offers in Kajabi. The pages switch to the ordinary-price links on their own, but anyone holding an old offer link could still buy at the old price.</li>
-      <li>Set the after-purchase thank-you page (<code>maren-purchase-thank-you-page.html</code>) as the thank-you page of all 4 offers. Its <code>CONFIG</code> holds <code>maren@detlillepusterommet.no</code>. Leave <code>FIRE_PURCHASE</code> at <code>false</code> if Kajabi already sends the Meta Pixel Purchase event.</li>
-      <li>Each offer adds the tag <code>kjøpt-fra-stress-til-ro</code> on purchase, so buyers leave the sales emails (section 5).</li>
+      <li><strong>Sales page</strong>, offer card: «Betal» goes to the Kajabi pay-in-full offer, «Del opp» to the Kajabi 3-payment offer, «Betal med Klarna» to Klarna, «Betal med Vipps» to Vipps in full, and the text link «Eller del opp med Vipps» to Vipps in 3 payments. No button goes through the checkout page. Every other button on the page scrolls to the offer card.</li>
+      <li><strong>Checkout page</strong>: the main button and the Vipps button follow the chosen option (Delbetaling or Betal alt nå); the Vipps label shows the amount, for example «Betal med Vipps: 3 × 3 497 kr». The Klarna box goes to Klarna.</li>
+      <li>Klarna via Edpay is one payment; inside Klarna the buyer can pay within 30 days or split it, and Maren receives the full amount. Vipps in 3 payments is collected through Edpay, and Edpay says the seller manages instalment payments, so follow up any missed Vipps instalments.</li>
+    </ul>
+    <h3>Also in Kajabi</h3>
+    <ul>
+      <li>The bonuses (Minikurs i meditasjon and Morgenstrekk med Pia) are only for buyers before Sun 15 Nov, 23:59. The offers must deliver the bonuses to those buyers and stop doing so after Sunday 23:59.</li>
+      <li>Set the after-purchase thank-you page (<code>maren-purchase-thank-you-page.html</code>) as the thank-you page of the offers. Its <code>CONFIG</code> holds <code>maren@detlillepusterommet.no</code>. Leave <code>FIRE_PURCHASE</code> at <code>false</code> if Kajabi already sends the Meta Pixel Purchase event.</li>
+      <li>Each offer adds the tag <code>kjøpt-fra-stress-til-ro</code> on purchase, so buyers leave the sales emails (section 5). Check the same for purchases through Edpay (Vipps, Klarna).</li>
     </ul>
   </section>
 
   <section class="card">
-    <h2>2. Checkout · <code>maren-checkout-page.html</code></h2>
-    <p>Fill in <code>var OFFER = {…}</code> at the top of the script.</p>
+    <h2>2. Checkout page · <code>maren-checkout-page.html</code></h2>
+    <p>All payment links are filled in (section 1). What is still missing is the page itself in Kajabi.</p>
     <div class="tbl"><table>
-      <tr><th>Field</th><th>Link</th><th>If empty</th><th>Status</th></tr>
-      <tr><td><code>options</code> → <code>split</code> → <code>url</code></td><td>Offer 3 × 3 497 kr</td><td>The pay button only shows a preview notice</td><td><span class="miss">Missing</span></td></tr>
-      <tr><td><code>options</code> → <code>full</code> → <code>url</code></td><td>Offer 9 997 kr</td><td>Same</td><td><span class="miss">Missing</span></td></tr>
-      <tr><td><code>after</code> → <code>split</code> → <code>url</code></td><td>Offer 3 × 5 247 kr</td><td>Same, from Thursday</td><td><span class="miss">Missing</span></td></tr>
-      <tr><td><code>after</code> → <code>full</code> → <code>url</code></td><td>Offer 14 990 kr</td><td>Same, from Thursday</td><td><span class="miss">Missing</span></td></tr>
-      <tr><td><code>klarna</code></td><td>Klarna (Edpay), 9 997 kr</td><td>The Klarna box still shows; clicking it only shows a preview notice</td><td><span class="miss">Missing</span></td></tr>
-      <tr><td><code>vipps</code></td><td>Vipps (Edpay), 9 997 kr</td><td>The Vipps button still shows; clicking it only shows a preview notice</td><td><span class="miss">Missing</span></td></tr>
-      <tr><td><code>klarnaAfter</code></td><td>Klarna (Edpay), 14 990 kr</td><td>Same, from Thursday</td><td><span class="miss">Missing</span></td></tr>
-      <tr><td><code>vippsAfter</code></td><td>Vipps (Edpay), 14 990 kr</td><td>Same, from Thursday</td><td><span class="miss">Missing</span></td></tr>
+      <tr><th>Item</th><th>What</th><th>Status</th></tr>
+      <tr><td>Kajabi page</td><td>Create a page with one full-width Custom Code section and paste the file. Its URL is the <code>CHECKOUT</code> link of emails 1, 2 and 3 (section 6).</td><td><span class="miss">Missing</span></td></tr>
     </table></div>
-    <p class="note">Emails 1, 2 and 3 link to this page. The sales page does not go through the checkout page. The page switches to <code>after</code>, <code>vippsAfter</code> and <code>klarnaAfter</code> by itself after Wednesday 23:59.</p>
   </section>
 
   <section class="card">
     <h2>3. Sales page · <code>maren-sales-page.html</code></h2>
-    <p>The 4 payment buttons in the offer card (Betal, Del opp, Betal med Klarna, Betal med Vipps) go straight to the Kajabi offer, Klarna and Vipps, never through the checkout page. Every other button on the page (top bar, mid-page buttons, final button, mobile price bar) scrolls to the offer card. Fill in <code>PAY</code> (webinar price) and <code>PAY_AFTER</code> (ordinary price, from Thursday) at the top of the script. The page switches link sets by itself after Wednesday 23:59.</p>
+    <p>All payment links are filled in (section 1). What is still missing is the page itself in Kajabi.</p>
     <div class="tbl"><table>
-      <tr><th>Field</th><th>Button</th><th>Link</th><th>Status</th></tr>
-      <tr><td><code>PAY.full</code></td><td>Betal 9 997 kr</td><td>Offer 9 997 kr</td><td><span class="miss">Missing</span></td></tr>
-      <tr><td><code>PAY.split</code></td><td>Del opp: 3 × 3 497 kr</td><td>Offer 3 × 3 497 kr</td><td><span class="miss">Missing</span></td></tr>
-      <tr><td><code>PAY.klarna</code></td><td>Betal med Klarna</td><td>Klarna, webinar price</td><td><span class="miss">Missing</span></td></tr>
-      <tr><td><code>PAY.vipps</code></td><td>Betal med Vipps</td><td>Vipps, webinar price</td><td><span class="miss">Missing</span></td></tr>
-      <tr><td><code>PAY_AFTER.full</code></td><td>Betal 14 990 kr</td><td>Offer 14 990 kr</td><td><span class="miss">Missing</span></td></tr>
-      <tr><td><code>PAY_AFTER.split</code></td><td>Del opp: 3 × 5 247 kr</td><td>Offer 3 × 5 247 kr</td><td><span class="miss">Missing</span></td></tr>
-      <tr><td><code>PAY_AFTER.klarna</code></td><td>Betal med Klarna</td><td>Klarna, ordinary price</td><td><span class="miss">Missing</span></td></tr>
-      <tr><td><code>PAY_AFTER.vipps</code></td><td>Betal med Vipps</td><td>Vipps, ordinary price</td><td><span class="miss">Missing</span></td></tr>
+      <tr><th>Item</th><th>What</th><th>Status</th></tr>
+      <tr><td>Kajabi page</td><td>Create a page with one full-width Custom Code section and paste the file. Its URL is the <code>SALGSSIDE</code> link of emails 4 to 8 and the <code>OFFER_URL</code> of the replay page.</td><td><span class="miss">Missing</span></td></tr>
     </table></div>
-    <p class="note">An empty field makes its button show a preview notice only. These are the same Edpay links as in the checkout fields.</p>
   </section>
 
   <section class="card">
@@ -182,7 +168,7 @@ a:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
       <li>The deadlines live in <code>DEADLINES</code> on the sales page and the checkout page, in Oslo time: bonuses <code>2026-11-15 23:59:59</code>, webinar price <code>2026-11-18 23:59:59</code>. No change needed. Both pages were tested at 6 moments and give the same result in any viewer time zone.</li>
       <li>Preview any moment by adding <code>?dato=2026-11-17T12:00</code> to the URL, for example <a href="../salgsside/?dato=2026-11-19T12:00">the sales page after Wednesday</a>.</li>
       <li>If a page is open when a deadline passes: the checkout switches from the bonus countdown to the webinar price countdown, and after the price deadline both pages reload and show 14 990 kr.</li>
-      <li>After filling in the links, open all 3 pages and click every button. A «Forhåndsvisning: … ikke lagt inn ennå» notice means a link is still empty.</li>
+      <li>Open all 3 pages in Kajabi and click every button once. A «Forhåndsvisning: … ikke lagt inn ennå» notice means a link is still empty. Opening a Vipps link starts a real Vipps payment; just close it.</li>
     </ul>
   </section>
 
