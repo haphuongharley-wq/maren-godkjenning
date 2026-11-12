@@ -83,11 +83,17 @@ a:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
   </section>
 
   <section class="card">
+    <h2>Pages in Kajabi</h2>
+    <p>All four pages are drafts in Kajabi with their content in. Each page is one code block (the replay page has two plus a video block), with Kajabi's default header and footer hidden. The images load from the public repo <code>maren-kajabi-pages</code> (<code>kajabi/img/</code>), so keep that repo public. After any change to a page, run <code>page-source/build-kajabi-pages.py</code> and paste or push the matching file from <code>pages/kajabi/</code> again.</p>
+    <p class="note">Open each page in the Kajabi builder preview (desktop and mobile) before publishing, to check that the theme does not change fonts or spacing.</p>
+  </section>
+
+  <section class="card">
     <h2>2. Checkout page · <code>maren-checkout-page.html</code></h2>
     <p>All payment links are filled in (section 1). What is still missing is the page itself in Kajabi.</p>
     <div class="tbl"><table>
       <tr><th>Item</th><th>What</th><th>Status</th></tr>
-      <tr><td>Kajabi page</td><td>Create a page with one full-width Custom Code section and paste the file. Its URL is the <code>CHECKOUT</code> link of emails 1, 2 and 3 (section 6).</td><td><span class="miss">Missing</span></td></tr>
+      <tr><td>Kajabi page 2152400771 <code>/fra-stress-til-ro-betaling</code></td><td>Content is in (one code block, header and footer hidden), checked byte for byte. Its URL is the <code>CHECKOUT</code> link of emails 1, 2 and 3. Check the builder preview, then publish.</td><td><span class="done">Content in</span> <span class="miss">Publish</span></td></tr>
     </table></div>
   </section>
 
@@ -96,7 +102,7 @@ a:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
     <p>All payment links are filled in (section 1). What is still missing is the page itself in Kajabi.</p>
     <div class="tbl"><table>
       <tr><th>Item</th><th>What</th><th>Status</th></tr>
-      <tr><td>Kajabi page</td><td>Create a page with one full-width Custom Code section and paste the file. Its URL is the <code>SALGSSIDE</code> link of emails 4 to 8 and the <code>OFFER_URL</code> of the replay page.</td><td><span class="miss">Missing</span></td></tr>
+      <tr><td>Kajabi page 2152400770 <code>/fra-stress-til-ro-tilbud</code></td><td>Content is in (one code block, header and footer hidden), checked byte for byte. Its URL is the <code>SALGSSIDE</code> link of emails 4 to 8 and the <code>OFFER_URL</code> of the replay page. Check the builder preview, then publish.</td><td><span class="done">Content in</span> <span class="miss">Publish</span></td></tr>
     </table></div>
   </section>
 
@@ -105,10 +111,11 @@ a:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
     <p>Emails 2 and 4 link here. The page is three sections on one Kajabi landing page, so on Sunday Maren only replaces a video and never touches code. Her Norwegian guide: <a href="../opptak/">Slik legger du inn opptaket</a>.</p>
     <div class="tbl"><table>
       <tr><th>Section</th><th>What</th><th>Status</th></tr>
-      <tr><td>1 · Custom Code</td><td>Paste <code>maren-replay-top.html</code> (heading and intro)</td><td><span class="miss">To build</span></td></tr>
-      <tr><td>2 · Kajabi Video section</td><td>Native Kajabi Video section, background <code>#f4efe5</code>, max width about 960px. Upload <code>media/replay/replay-placeholder.mp4</code> now (10 s, «Opptaket kommer i løpet av kvelden»); optional thumbnail <code>replay-placeholder.png</code>.</td><td><span class="miss">To build</span></td></tr>
-      <tr><td>3 · Custom Code</td><td>Paste <code>maren-replay-bottom.html</code> (testimonials and the button). Fill <code>OFFER_URL</code> with the sales page URL.</td><td><span class="miss">Missing</span> OFFER_URL</td></tr>
+      <tr><td>1 · code block <code>rp-top</code></td><td>Heading and intro</td><td><span class="done">Content in</span></td></tr>
+      <tr><td>2 · video block <code>rp-video</code></td><td>Native Nova video block on background <code>#f4efe5</code>. Upload <code>media/replay/replay-placeholder.mp4</code> into it in the builder now (10 s, «Opptaket kommer i løpet av kvelden»).</td><td><span class="miss">Upload placeholder</span></td></tr>
+      <tr><td>3 · code block <code>rp-bot</code></td><td>Testimonials and the button to the sales page (<code>OFFER_URL</code> filled)</td><td><span class="done">Content in</span></td></tr>
     </table></div>
+    <p>Kajabi page 2152400772 <code>/opptak-webinar</code>, draft. Publish after the placeholder video is in.</p>
     <ul>
       <li><code>maren-replay-page.html</code> is a preview of the three sections together; never paste it into Kajabi.</li>
       <li>Before Sunday: send Maren the direct link to the page editor, and do one test run of «Replace» on the video section to confirm the button names in her guide.</li>
@@ -125,7 +132,7 @@ a:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
       <tr><td>Tag</td><td><code>stopp-salg-fsr</code> (id 2150450429)</td><td><span class="done">Created</span></td></tr>
       <tr><td>Link action</td><td>In each of the 8 event emails, select the «Klikk her» link and add the link action «Add tag <code>stopp-salg-fsr</code>».</td><td><span class="miss">To do in Kajabi</span></td></tr>
       <tr><td>Automation 1506282</td><td>«FSR salg: stopp salgs-e-poster»: when the tag is added, deregister the contact from the webinar event, so the remaining event emails stop. <a href="https://app.kajabi.com/admin/workflows/1506282/edit">Open</a></td><td><span class="miss">Draft, publish</span></td></tr>
-      <tr><td>Page <code>/stopp-salg</code></td><td>Short confirmation, for example «Takk, du får ikke flere e-poster om Fra stress til ro. De vanlige e-postene mine kommer som før.»</td><td><span class="miss">Draft, fill and publish</span></td></tr>
+      <tr><td>Page <code>/stopp-salg</code></td><td>Confirmation «Ferdig, du får ikke flere e-poster om Fra stress til ro. … De vanlige e-postene mine kommer som før. Klem fra Maren»</td><td><span class="done">Content in</span> <span class="miss">Publish</span></td></tr>
     </table></div>
     <p class="note">Do not use Kajabi's default unsubscribe link for this line; it removes the contact from the whole email list.</p>
   </section>
